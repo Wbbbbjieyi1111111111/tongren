@@ -1,0 +1,98 @@
+{
+  "canvas": [
+    339,
+    336
+  ],
+  "clips": {
+    "head": {
+      "bbox": [
+        2,
+        2,
+        272,
+        160
+      ],
+      "inset_px": [
+        2,
+        67,
+        176,
+        2
+      ],
+      "css_inset": "inset(2px 67px 176px 2px)"
+    },
+    "body": {
+      "bbox": [
+        52,
+        155,
+        223,
+        248
+      ],
+      "inset_px": [
+        155,
+        116,
+        88,
+        52
+      ],
+      "css_inset": "inset(155px 116px 88px 52px)"
+    },
+    "armL": {
+      "bbox": [
+        2,
+        168,
+        78,
+        242
+      ],
+      "inset_px": [
+        168,
+        261,
+        94,
+        2
+      ],
+      "css_inset": "inset(168px 261px 94px 2px)"
+    },
+    "armR": {
+      "bbox": [
+        197,
+        168,
+        273,
+        242
+      ],
+      "inset_px": [
+        168,
+        66,
+        94,
+        197
+      ],
+      "css_inset": "inset(168px 66px 94px 197px)"
+    },
+    "legL": {
+      "bbox": [
+        38,
+        245,
+        133,
+        328
+      ],
+      "inset_px": [
+        245,
+        206,
+        8,
+        38
+      ],
+      "css_inset": "inset(245px 206px 8px 38px)"
+    },
+    "legR": {
+      "bbox": [
+        140,
+        245,
+        248,
+        328
+      ],
+      "inset_px": [
+        245,
+        91,
+        8,
+        140
+      ],
+      "css_inset": "inset(245px 91px 8px 140px)"
+    }
+  }
+}

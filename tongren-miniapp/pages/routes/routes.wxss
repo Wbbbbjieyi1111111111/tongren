@@ -1,0 +1,16 @@
+/* 路线列表页独有样式 */
+
+/* 头图底纹铺满 */
+.custom-hero .ch-topo {
+  display: block;
+}
+
+/* 按钮为 view，需要显式撑开 */
+.route-actions .btn {
+  display: flex;
+}
+
+/* CTA 内箭头间距 */
+.custom-hero .ch-cta .ico {
+  margin-left: 5.73rpx;
+}

@@ -1,0 +1,82 @@
+<view class="sub-page search-page">
+
+  <!-- 顶部搜索栏 -->
+  <view class="search-top" style="padding-top:{{statusBar}}px">
+    <view class="icon-btn" hover-class="hs" bindtap="onBack">
+      <image class="ico i21" src="{{icons.back}}" mode="aspectFit" />
+    </view>
+    <view class="search-inputwrap">
+      <image class="ico i16" src="{{icons.search}}" mode="aspectFit" />
+      <input
+        class="tx-input"
+        value="{{keyword}}"
+        placeholder="搜索景点、区县或分类"
+        confirm-type="search"
+        bindinput="onInput"
+        bindconfirm="onConfirm"
+      />
+      <view class="clear-btn" hover-class="hs" bindtap="onClear">
+        <image class="ico i14" src="{{icons.clear}}" mode="aspectFit" />
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="search-body" scroll-y="true">
+
+    <!-- 默认态：热门搜索 / 历史搜索 / 为你推荐 -->
+    <block wx:if="{{mode === 'default'}}">
+      <view class="tx-p search-label">热门搜索</view>
+      <view class="search-chips">
+        <view class="search-chip" wx:for="{{hot}}" wx:key="*this" hover-class="hs" bindtap="onChipTap" data-q="{{item}}">{{item}}</view>
+      </view>
+
+      <block wx:if="{{history.length}}">
+        <view class="tx-p search-label search-label-row">
+          <text class="tx-span">历史搜索</text>
+          <text class="tx-span search-clear" hover-class="hs" bindtap="onClearHistory">清空</text>
+        </view>
+        <view class="search-chips">
+          <view class="search-chip" wx:for="{{history}}" wx:key="*this" hover-class="hs" bindtap="onChipTap" data-q="{{item}}">{{item}}</view>
+        </view>
+      </block>
+
+      <block wx:if="{{recommend.length}}">
+        <view class="tx-p search-label">为你推荐</view>
+        <view class="suggest-row" wx:for="{{recommend}}" wx:key="id" hover-class="hs" bindtap="onSpotTap" data-id="{{item.id}}">
+          <image src="{{item.imgUrl}}" mode="aspectFill" />
+          <view class="suggest-main">
+            <text class="tx-b">{{item.name}}</text>
+            <text class="tx-span">{{item.meta}}</text>
+          </view>
+          <image class="ico i15" src="{{icons.chevron}}" mode="aspectFit" />
+        </view>
+      </block>
+    </block>
+
+    <!-- 搜索结果 -->
+    <block wx:elif="{{mode === 'result'}}">
+      <view class="tx-p search-count">找到 {{total}} 处相关景点</view>
+      <view class="suggest-row" wx:for="{{results}}" wx:key="id" hover-class="hs" bindtap="onSpotTap" data-id="{{item.id}}">
+        <image src="{{item.imgUrl}}" mode="aspectFill" />
+        <view class="suggest-main">
+          <text class="tx-b">{{item.name}}</text>
+          <text class="tx-span">{{item.meta}}</text>
+        </view>
+        <image class="ico i15" src="{{icons.chevron}}" mode="aspectFit" />
+      </view>
+    </block>
+
+    <!-- 无结果 -->
+    <block wx:else>
+      <view class="search-empty">
+        <view class="se-icon">
+          <image class="ico i21" src="{{icons.search}}" mode="aspectFit" />
+        </view>
+        <text class="tx-b">暂未找到相关景点</text>
+        <text class="tx-span">试试“梵净山”“温泉”或“古镇”</text>
+        <text class="tx-span">换个关键词再找找看～</text>
+      </view>
+    </block>
+
+  </scroll-view>
+</view>

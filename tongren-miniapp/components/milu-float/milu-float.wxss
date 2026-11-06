@@ -1,0 +1,172 @@
+/* 悬浮 AI 人物「咪噜」 —— 部位分层 + clip-path 裁出每个身体部位
+ * 整体 scale(0.57) 小巧可爱
+ * 原图 339x336px，frame 渲染为 170x168px（缩到 50%），clip-path inset 相应 /2
+ */
+
+.milu-wrap {
+  position: fixed;
+  right: 26rpx;
+  z-index: 900;
+  width: 140rpx;
+  height: 140rpx;
+}
+
+/* 提示气泡 */
+.milu-tip {
+  position: absolute;
+  right: 150rpx;
+  top: 26rpx;
+  padding: 8rpx 18rpx;
+  white-space: nowrap;
+  border-radius: 999rpx;
+  background: #FFF;
+  color: #3A5B42;
+  font-size: 20rpx;
+  font-weight: 600;
+  box-shadow: 0 6rpx 20rpx rgba(58, 91, 66, 0.18);
+  border: 2rpx solid #E4EFE0;
+  animation: tipIn 0.35s ease-out;
+}
+
+@keyframes tipIn {
+  0%   { opacity: 0; transform: translateX(14rpx) scale(0.9); }
+  100% { opacity: 1; transform: translateX(0)    scale(1); }
+}
+
+/* ===== 舞台 ===== */
+.milu-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 落地阴影：固定在脚底下，随呼吸缩放 */
+.milu-shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 2rpx;
+  width: 84rpx;
+  height: 12rpx;
+  margin-left: -42rpx;
+  border-radius: 50%;
+  background: rgba(58, 91, 66, 0.24);
+  filter: blur(4rpx);
+  animation: shadowBreath 2.8s ease-in-out infinite;
+}
+
+@keyframes shadowBreath {
+  0%, 100% { transform: scale(1); opacity: 0.28; }
+  50%      { transform: scale(0.86); opacity: 0.14; }
+}
+
+/* frame：固定 170×168px（保持 clip-path 坐标系不变），整体 scale(0.57) 缩小 */
+.milu-frame {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 170px;
+  height: 168px;
+  margin-left: -85px;
+  transform: scale(0.57);
+  transform-origin: 50% 100%;     /* 脚底为支点，脚不会离地 */
+  animation: idleBreath 3.0s ease-in-out infinite;
+}
+
+@keyframes idleBreath {
+  0%, 100% { transform: scale(0.57) translateY(0); }
+  50%      { transform: scale(0.57) translateY(-4rpx); }
+}
+
+/* 每个部位层：与 frame 同尺寸 + 完整图 + clip-path 裁 */
+.milu-part {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 170px;
+  height: 168px;
+  pointer-events: none;
+  will-change: transform;
+}
+.milu-full {
+  width: 170px;
+  height: 168px;
+  display: block;
+}
+
+/* 各部位的 clip-path（值由 tools/build_milu_sheet.py 算出，原图 339x336 → frame 170x168） */
+.milu-head {
+  clip-path: inset(1px 33px 88px 1px);
+  z-index: 30;
+  transform-origin: 50% 60%;
+}
+.milu-body {
+  clip-path: inset(77px 58px 44px 26px);
+  z-index: 20;
+  transform-origin: 50% 95%;
+}
+.milu-armL {
+  clip-path: inset(84px 130px 47px 1px);
+  transform-origin: 78% 10%;
+  z-index: 25;
+}
+.milu-armR {
+  clip-path: inset(84px 33px 47px 98px);
+  transform-origin: 22% 10%;
+  z-index: 25;
+}
+.milu-legL {
+  clip-path: inset(122px 103px 4px 19px);
+  transform-origin: 50% 12%;
+  z-index: 10;
+}
+.milu-legR {
+  clip-path: inset(122px 45px 4px 70px);
+  transform-origin: 50% 12%;
+  z-index: 10;
+}
+
+/* ============================================================
+ * 跳动 bounce：身体整体上下轻弹 3 次
+ * ============================================================ */
+.act-bounce .milu-frame {
+  animation: bounceMicro 0.9s cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+.act-bounce .milu-shadow {
+  animation: shadowBounce 0.9s cubic-bezier(0.28, 0.84, 0.42, 1);
+}
+
+@keyframes bounceMicro {
+  0%   { transform: scale(0.57) translateY(0); }
+  25%  { transform: scale(0.57) translateY(-14rpx); }
+  45%  { transform: scale(0.57) translateY(0); }
+  65%  { transform: scale(0.57) translateY(-8rpx); }
+  100% { transform: scale(0.57) translateY(0); }
+}
+@keyframes shadowBounce {
+  0%, 100% { transform: scale(1.0); opacity: 0.28; }
+  25%      { transform: scale(0.72); opacity: 0.14; }
+  45%      { transform: scale(1.0);  opacity: 0.28; }
+  65%      { transform: scale(0.82); opacity: 0.18; }
+}
+
+/* 点击瞬间小跳 */
+.act-jump .milu-frame {
+  animation: tapJump 0.45s ease-out;
+}
+@keyframes tapJump {
+  0%   { transform: scale(0.57) translateY(0); }
+  40%  { transform: scale(0.57) translateY(-10rpx); }
+  100% { transform: scale(0.57) translateY(0); }
+}
+
+/* idle：清除所有动作动画，回到呼吸 */
+.act-idle .milu-frame,
+.act-idle .milu-shadow {
+  animation: none;
+}
+.act-idle .milu-frame {
+  animation: idleBreath 3.0s ease-in-out infinite;
+}
+.act-idle .milu-shadow {
+  animation: shadowBreath 2.8s ease-in-out infinite;
+}

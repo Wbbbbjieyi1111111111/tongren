@@ -1,0 +1,29 @@
+/* 搜索页独有样式（绝大多数类名已在 app.wxss 中定义，此处只做必要补充） */
+
+/* 页面骨架：顶部固定，主体可滚动 */
+.search-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.search-body {
+  flex: 1 1 auto;
+  height: 0;
+}
+
+/* 历史搜索标题行（左侧标题 + 右侧清空） */
+.search-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search-label-row .search-clear {
+  font-size: 19.08rpx;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+
+/* 空态两行说明文案 */
+.search-empty .tx-span + .tx-span {
+  margin-top: 0;
+}

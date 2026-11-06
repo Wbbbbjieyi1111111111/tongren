@@ -1,0 +1,35 @@
+<view class="milu-wrap" style="bottom:{{bottomPx}}px">
+  <view class="milu-tip" wx:if="{{showTip}}">呼唤咪噜</view>
+
+  <view class="milu-stage {{actClass}}" bindtap="onTap">
+    <view class="milu-shadow"></view>
+
+    <!-- 固定尺寸 frame，整体 scale(0.57) 小巧可爱 -->
+    <view class="milu-frame">
+      <!-- 左脚 -->
+      <view class="milu-part milu-leg milu-legL">
+        <image class="milu-full" src="/static/characters/milu.png" mode="aspectFit" />
+      </view>
+      <!-- 右脚 -->
+      <view class="milu-part milu-leg milu-legR">
+        <image class="milu-full" src="/static/characters/milu.png" mode="aspectFit" />
+      </view>
+      <!-- 躯干 -->
+      <view class="milu-part milu-body">
+        <image class="milu-full" src="/static/characters/milu.png" mode="aspectFit" />
+      </view>
+      <!-- 左臂 -->
+      <view class="milu-part milu-arm milu-armL">
+        <image class="milu-full" src="/static/characters/milu.png" mode="aspectFit" />
+      </view>
+      <!-- 右臂 -->
+      <view class="milu-part milu-arm milu-armR">
+        <image class="milu-full" src="/static/characters/milu.png" mode="aspectFit" />
+      </view>
+      <!-- 头 -->
+      <view class="milu-part milu-head">
+        <image class="milu-full" src="/static/characters/milu.png" mode="aspectFit" />
+      </view>
+    </view>
+  </view>
+</view>

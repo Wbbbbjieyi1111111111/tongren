@@ -1,0 +1,25 @@
+/* 景点列表页独有样式 */
+
+/* scroll-view 内的 chip 需要一行排列 */
+.chips {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  width: 100%;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 瀑布流两列顶部对齐 */
+.wf-col {
+  display: block;
+}
+
+/* 卡片封面按原图比例自适应 */
+.spot-card .card-media image {
+  display: block;
+  width: 100%;
+}

@@ -1,0 +1,121 @@
+<view class="sub-page">
+
+  <!-- 自定义导航 -->
+  <view class="subnav" style="padding-top:{{statusBar}}px">
+    <view class="icon-btn" hover-class="hs" bindtap="onBack">
+      <image class="ico i21" src="{{icons.back}}" mode="aspectFit" />
+    </view>
+    <text class="tx-h2">自定义路线</text>
+    <view class="text-action" hover-class="hs" bindtap="onReset">重置</view>
+  </view>
+
+  <!-- 真实地图选点 -->
+  <view class="map-card">
+    <map
+      class="tongren-map"
+      longitude="{{mapCenter.longitude}}"
+      latitude="{{mapCenter.latitude}}"
+      scale="{{mapScale}}"
+      markers="{{mapMarkers}}"
+      polyline="{{polyline}}"
+      bindmarkertap="onMarkerTap"
+      show-location="{{false}}"
+      enable-zoom="{{true}}"
+      enable-scroll="{{true}}"
+      enable-rotate="{{false}}"
+    ></map>
+    <view class="map-overlay-tip">
+      <image class="ico i16" src="{{icons.pin}}" mode="aspectFit" />
+      <text class="tx-span">点击地图标记可直接选点</text>
+    </view>
+  </view>
+
+  <!-- 第一步 -->
+  <view class="step-head">
+    <view class="step-num">1</view>
+    <text class="tx-h3">勾选想去的景点</text>
+    <view class="count-chip">已选 {{selected.length}} 个</view>
+  </view>
+  <view class="tx-p step-hint">从下面挑几处心动的地方，顺序可以在下一步调整。</view>
+
+  <view class="select-list">
+    <view class="select-row" wx:for="{{selectList}}" wx:key="id" hover-class="hs" bindtap="onToggle" data-id="{{item.id}}">
+      <view class="check {{item.on ? 'on' : ''}}">
+        <image wx:if="{{item.on}}" class="ico i13" src="{{icons.check}}" mode="aspectFit" />
+      </view>
+      <view class="select-main">
+        <text class="tx-b">{{item.name}}</text>
+        <text class="tx-span">{{item.district}} · {{item.cat}}</text>
+      </view>
+      <view class="lv-pill {{item.level === '5A' ? 'gold' : ''}}">{{item.levelText}}</view>
+    </view>
+  </view>
+
+  <!-- 第二步 -->
+  <view class="step-head">
+    <view class="step-num">2</view>
+    <text class="tx-h3">调整游玩顺序</text>
+  </view>
+  <view class="tx-p step-hint">用箭头调整先后，生成后即为行程顺序。</view>
+
+  <view class="empty-card" wx:if="{{!selected.length}}">
+    <view class="ec-icon">
+      <image class="ico i19" src="{{icons.route}}" mode="aspectFit" />
+    </view>
+    <text class="tx-span">先去勾选几个心动景点吧</text>
+    <text class="tx-span">顺序可以随时调整</text>
+  </view>
+
+  <view class="order-list" wx:else>
+    <view class="order-row" wx:for="{{orderList}}" wx:key="id">
+      <view class="order-index">{{index + 1}}</view>
+      <view class="order-main">
+        <text class="tx-b">{{item.name}}</text>
+        <text class="tx-span">{{item.district}}</text>
+      </view>
+      <view class="order-ctrl">
+        <view class="mini-btn {{index === 0 ? 'is-off' : ''}}" hover-class="hs" bindtap="onMove" data-id="{{item.id}}" data-dir="-1">
+          <image class="ico i14" src="{{icons.up}}" mode="aspectFit" />
+        </view>
+        <view class="mini-btn {{index === orderList.length - 1 ? 'is-off' : ''}}" hover-class="hs" bindtap="onMove" data-id="{{item.id}}" data-dir="1">
+          <image class="ico i14" src="{{icons.down}}" mode="aspectFit" />
+        </view>
+        <view class="mini-btn danger" hover-class="hs" bindtap="onRemove" data-id="{{item.id}}">
+          <image class="ico i14" src="{{icons.x}}" mode="aspectFit" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 生成结果 -->
+  <view class="generate-wrap">
+    <view class="result-card" wx:if="{{generated}}">
+      <text class="tx-label">行程名称</text>
+      <input class="tx-input" type="text" maxlength="24" value="{{title}}" placeholder="{{titlePlaceholder}}" bindinput="onTitleInput" />
+      <view class="trip-day" wx:for="{{plan}}" wx:key="day">
+        <text class="tx-h5">{{item.day}}</text>
+        <view class="tx-ul">
+          <view class="tx-li" wx:for="{{item.items}}" wx:for-item="it" wx:for-index="ii" wx:key="name">
+            <text class="tx-span trip-time">{{it.time}}</text>
+            <text class="tx-span">{{it.name}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="btn btn-ghost btn-block" hover-class="hs" bindtap="onCopy">
+        <image class="ico i15" src="{{icons.copy}}" mode="aspectFit" />
+        <text class="tx-span">导出行程清单</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="subbar-space"></view>
+
+  <!-- 底部生成按钮 -->
+  <view class="actionbar">
+    <view class="btn btn-primary btn-block" hover-class="hs" bindtap="onGenerate">
+      <image class="ico i16" src="{{icons.spark}}" mode="aspectFit" />
+      <text class="tx-span">生成我的行程</text>
+    </view>
+  </view>
+
+</view>

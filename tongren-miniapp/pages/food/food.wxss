@@ -1,0 +1,20 @@
+/* 美食民俗页独有样式 */
+
+/* 自定义导航吸顶 */
+.subnav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+/* 分段控件等分 */
+.segmented .seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 节庆日期块与主内容 */
+.fest-date {
+  flex: none;
+}

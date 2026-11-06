@@ -1,0 +1,70 @@
+<view class="tab-page">
+
+  <!-- 页面标题 -->
+  <view class="page-head" style="padding-top:{{statusBar}}px">
+    <view class="tx-p eyebrow">TONGREN · GUIZHOU</view>
+    <view class="tx-h1 page-title">景点介绍</view>
+    <view class="tx-p page-sub">十二处山水与古镇，慢慢走，刚刚好。</view>
+  </view>
+
+  <!-- 分类筛选 -->
+  <view class="chipbar">
+    <scroll-view class="chips" scroll-x="true" show-scrollbar="false" enable-flex="true">
+      <view class="chip {{item === activeCat ? 'is-on' : ''}}" wx:for="{{cats}}" wx:key="*this" hover-class="hs" bindtap="onCatTap" data-cat="{{item}}">{{item}}</view>
+    </scroll-view>
+  </view>
+
+  <!-- 瀑布流 -->
+  <view class="waterfall">
+    <view class="wf-col">
+      <view class="spot-card" wx:for="{{colLeft}}" wx:key="id" hover-class="hs" bindtap="onSpotTap" data-id="{{item.id}}">
+        <view class="card-media">
+          <image src="{{item.imgUrl}}" mode="widthFix" />
+          <view class="badge-lv {{item.badgeCls}}">{{item.badgeText}}</view>
+        </view>
+        <view class="card-body">
+          <text class="tx-span card-name">{{item.name}}</text>
+          <view class="tx-p card-brief clamp2">{{item.brief}}</view>
+          <view class="card-meta">
+            <view class="meta-pin">
+              <image class="ico i10" src="{{icons.pin}}" mode="aspectFit" />
+              <text class="tx-span">{{item.district}}</text>
+            </view>
+            <view class="meta-score">
+              <image class="ico i10" src="{{icons.star}}" mode="aspectFit" />
+              <text class="tx-span">{{item.score}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="wf-col">
+      <view class="spot-card" wx:for="{{colRight}}" wx:key="id" hover-class="hs" bindtap="onSpotTap" data-id="{{item.id}}">
+        <view class="card-media">
+          <image src="{{item.imgUrl}}" mode="widthFix" />
+          <view class="badge-lv {{item.badgeCls}}">{{item.badgeText}}</view>
+        </view>
+        <view class="card-body">
+          <text class="tx-span card-name">{{item.name}}</text>
+          <view class="tx-p card-brief clamp2">{{item.brief}}</view>
+          <view class="card-meta">
+            <view class="meta-pin">
+              <image class="ico i10" src="{{icons.pin}}" mode="aspectFit" />
+              <text class="tx-span">{{item.district}}</text>
+            </view>
+            <view class="meta-score">
+              <image class="ico i10" src="{{icons.star}}" mode="aspectFit" />
+              <text class="tx-span">{{item.score}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tx-p end-note">— 已经到底啦 · 大美铜仁等你来 —</view>
+
+  <!-- 悬浮 AI 管家 咪噜 -->
+  <milu-float />
+
+</view>

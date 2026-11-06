@@ -1,0 +1,143 @@
+/**
+ * 登录 / 注册 —— 主题色与全站一致（绿 --green-800 + 米色 --cream）
+ */
+
+.auth-card {
+  margin: 38.17rpx 34.35rpx 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 38.17rpx;
+  padding: 34.35rpx;
+  box-shadow: 0 15.27rpx 45.80rpx rgba(43, 70, 49, .07);
+}
+
+/* 登录 / 注册 切换 */
+.seg {
+  display: flex;
+  background: var(--green-50);
+  border-radius: 19.08rpx;
+  padding: 5.73rpx;
+  margin-bottom: 34.35rpx;
+}
+.seg-item {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  height: 66.80rpx;
+  border-radius: 15.27rpx;
+  font-size: 22.90rpx;
+  color: var(--muted);
+}
+.seg-item.is-on {
+  background: #fff;
+  color: var(--green-800);
+  font-weight: 600;
+  box-shadow: 0 3.82rpx 11.45rpx rgba(43, 70, 49, .10);
+}
+
+/* 表单 */
+.field { margin-bottom: 26.72rpx; }
+.field-label {
+  font-size: 19.08rpx;
+  color: var(--muted);
+  letter-spacing: .10em;
+  margin-bottom: 11.45rpx;
+}
+.field-box {
+  display: flex; align-items: center;
+  height: 95.42rpx;
+  border: 1px solid var(--line);
+  border-radius: 20.99rpx;
+  background: var(--cream);
+  padding: 0 24.81rpx;
+}
+.field-box input {
+  flex: 1;
+  height: 95.42rpx;
+  font-size: 24.81rpx;
+  color: var(--ink);
+}
+.ph { color: var(--muted); font-size: 22.90rpx; }
+.field-box .ico { margin-right: 15.27rpx; }
+
+/* 按钮 */
+.btn-primary {
+  margin-top: 11.45rpx;
+  height: 95.42rpx;
+  border-radius: 1906.49rpx;
+  background: var(--green-800);
+  color: #fff;
+  font-size: 26.72rpx;
+  font-weight: 600;
+  letter-spacing: .12em;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 11.45rpx 28.63rpx rgba(43, 70, 49, .18);
+}
+.btn-primary.is-off { opacity: .6; }
+.btn-ghost {
+  margin-top: 19.08rpx;
+  height: 95.42rpx;
+  border-radius: 1906.49rpx;
+  border: 1px solid var(--line-strong);
+  background: #fff;
+  color: var(--muted);
+  font-size: 24.81rpx;
+  display: flex; align-items: center; justify-content: center;
+}
+.hint {
+  margin-top: 22.90rpx;
+  text-align: center;
+  font-size: 18.13rpx;
+  color: var(--muted);
+}
+
+/* 已登录账号卡 */
+.profile-row {
+  display: flex; align-items: center;
+  padding-bottom: 28.63rpx;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 28.63rpx;
+}
+.avatar-seal {
+  width: 95.42rpx;
+  height: 95.42rpx;
+  border-radius: 28.63rpx;
+  background: var(--green-50);
+  display: flex; align-items: center; justify-content: center;
+  flex: none;
+  margin-right: 22.90rpx;
+}
+.profile-meta {
+  display: flex; flex-direction: column;
+  min-width: 0; flex: 1;
+}
+.profile-name {
+  font-family: var(--font-serif);
+  font-size: 30.53rpx;
+  color: var(--ink);
+}
+.profile-phone {
+  font-size: 20.99rpx;
+  color: var(--muted);
+  margin-top: 5.73rpx;
+}
+.badge-on {
+  flex: none;
+  padding: 7.63rpx 19.08rpx;
+  border-radius: 1906.49rpx;
+  background: var(--green-100);
+  color: var(--green-800);
+  font-size: 18.13rpx;
+}
+
+/* 品牌落款 */
+.login-seal {
+  margin: 57.25rpx 0 45.80rpx;
+  display: flex; flex-direction: column; align-items: center;
+}
+.seal-img { width: 114.50rpx; opacity: .9; }
+.seal-text {
+  margin-top: 15.27rpx;
+  font-size: 19.08rpx;
+  letter-spacing: .28em;
+  color: var(--muted);
+}

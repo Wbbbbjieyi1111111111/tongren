@@ -1,0 +1,16 @@
+<view class="tabbar">
+  <view
+    class="tab-btn {{selected === item.index ? 'is-on' : ''}}"
+    wx:for="{{list}}"
+    wx:key="key"
+    data-index="{{item.index}}"
+    data-url="{{item.url}}"
+    bindtap="onTap"
+    hover-class="hs"
+  >
+    <view class="tab-ico">
+      <image class="ico i21" src="{{selected === item.index ? item.on : item.off}}" mode="aspectFit" />
+    </view>
+    <text class="tx-span">{{item.text}}</text>
+  </view>
+</view>

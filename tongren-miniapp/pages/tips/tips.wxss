@@ -1,0 +1,26 @@
+/* 出游贴士页独有样式 */
+
+/* 自定义导航吸顶 */
+.subnav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+/* 季节卡两列排布 */
+.season-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 步骤竖线（占位元素）已由 app.wxss 的 .ps-line 定义，无需重复 */
+
+/* 注意事项圆点定位 */
+.bullet-card .tx-li {
+  position: relative;
+}
+
+/* 按钮为 view，需撑满 */
+.btn-block {
+  display: flex;
+}

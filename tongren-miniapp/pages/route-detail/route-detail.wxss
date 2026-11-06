@@ -1,0 +1,43 @@
+/* 路线详情页独有样式 */
+
+/* 自定义导航吸顶 */
+.subnav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+/* 底部操作栏固定 */
+.actionbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  padding-bottom: calc(22.90rpx + env(safe-area-inset-bottom));
+}
+.actionbar .btn:last-child {
+  margin-right: 0;
+}
+.subbar-space {
+  padding-bottom: 200rpx;
+}
+
+/* 天数徽标与标题间距 */
+.day-head .day-badge {
+  margin-right: 15.27rpx;
+}
+
+/* 沿途打卡横向列表 */
+.spot-track {
+  display: flex;
+  align-items: stretch;
+}
+
+/* 避坑标题内的图标与文字间距 */
+.warn-title .ico {
+  margin-right: 11.45rpx;
+}
+.warn-card .tx-ul {
+  padding-left: 28.63rpx;
+}

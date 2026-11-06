@@ -1,0 +1,56 @@
+/* 景点详情页独有样式 */
+
+/* 自定义导航吸顶 */
+.subnav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+/* 图集 swiper 铺满比例盒 */
+.hero-detail swiper-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hero-detail .hero-slide {
+  position: absolute;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 底部操作栏固定在视口底部（原型为 grid 第三行） */
+.actionbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  padding-bottom: calc(22.90rpx + env(safe-area-inset-bottom));
+}
+.actionbar .btn:last-child {
+  margin-right: 0;
+}
+.subbar-space {
+  padding-bottom: 200rpx;
+}
+
+/* 标签行内的图标间距 */
+.meta-row .tag {
+  margin-right: 11.45rpx;
+  margin-bottom: 7.63rpx;
+}
+.meta-row .tag .ico {
+  margin-right: 5.73rpx;
+}
+
+/* 周边风味横向列表 */
+.food-track {
+  display: flex;
+  align-items: stretch;
+}
+
+/* 贴士列表项相对定位，供圆点定位 */
+.tips-card .tx-li {
+  position: relative;
+}

@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/spots/spots",
+    "pages/routes/routes",
+    "pages/about/about",
+    "pages/spot-detail/spot-detail",
+    "pages/route-detail/route-detail",
+    "pages/custom/custom",
+    "pages/food/food",
+    "pages/tips/tips",
+    "pages/data/data",
+    "pages/login/login",
+    "pages/search/search",
+    "pages/ai/ai"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "大美铜仁",
+    "navigationBarBackgroundColor": "#F7F7F0",
+    "backgroundColor": "#F7F7F0"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#98988E",
+    "selectedColor": "#3A5B42",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/spots/spots",
+        "text": "景点"
+      },
+      {
+        "pagePath": "pages/routes/routes",
+        "text": "路线"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "text": "我们"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于展示附近景点与路线距离"
+    }
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

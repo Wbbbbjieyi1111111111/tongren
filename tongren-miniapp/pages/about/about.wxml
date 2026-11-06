@@ -1,0 +1,105 @@
+<view class="tab-page">
+
+  <!-- 页面标题 -->
+  <view class="page-head" style="padding-top:{{statusBar}}px">
+    <view class="tx-p eyebrow">ABOUT US</view>
+    <view class="tx-h1 page-title">关于我们</view>
+  </view>
+
+  <!-- 品牌介绍 -->
+  <view class="about-brand">
+    <image class="ab-topo" src="{{decoBrand}}" mode="aspectFill" />
+    <view class="ab-seal">
+      <image class="ico i34" src="{{icons.brand}}" mode="aspectFit" />
+    </view>
+    <view class="tx-h2">大美铜仁</view>
+    <view class="tx-p ab-tag">山水相逢 · GUIZHOU TONGREN</view>
+    <view class="tx-p ab-intro">本平台是铜仁文旅宣传小程序，汇聚梵净山、中南门、苗王城等核心文旅资源，以景点种草、路线规划、出行贴士为核心功能，为自由行游客提供一站式的铜仁出游灵感与行程参考。坚持清爽无广告的体验，让每一次滑动，都是一次山水相逢。</view>
+    <view class="pill-row">
+      <view class="pill">V1.0.0 静态数据版</view>
+      <view class="pill">无广告 · 无弹窗</view>
+      <view class="pill">纯前端体验</view>
+    </view>
+  </view>
+
+  <!-- 一城三族 -->
+  <view class="sec-head">
+    <view>
+      <text class="tx-h2 sec-title">一城三族，各有声色</text>
+      <view class="tx-p sec-sub">土家、苗、仡佬，共居武陵山下</view>
+    </view>
+  </view>
+  <scroll-view class="rail" scroll-x="true" show-scrollbar="false">
+    <view class="rail-track">
+      <view class="rail-item" wx:for="{{ethnic}}" wx:key="name" hover-class="hs" bindtap="onEthnicTap">
+        <view class="ethnic-card">
+          <view class="ec-media">
+            <image src="{{item.imgUrl}}" mode="aspectFill" />
+          </view>
+          <view class="ec-body">
+            <text class="tx-span ec-name">{{item.name}}</text>
+            <text class="tx-span ec-keys">{{item.keys}}</text>
+            <text class="tx-span ec-desc">{{item.desc}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 出游须知 & 联系咨询 -->
+  <view class="sec-head">
+    <view>
+      <text class="tx-h2 sec-title">出游须知 &amp; 联系咨询</text>
+    </view>
+  </view>
+  <view class="about-list">
+    <view class="info-row" wx:for="{{infos}}" wx:key="label">
+      <view class="info-ico">
+        <image class="ico i17" src="{{item.iconUrl}}" mode="aspectFit" />
+      </view>
+      <view class="info-main">
+        <text class="tx-span info-label">{{item.label}}</text>
+        <text class="tx-span info-value">{{item.value}}</text>
+      </view>
+    </view>
+    <view class="info-row" hover-class="hs" bindtap="onFeedbackTap">
+      <view class="info-ico">
+        <image class="ico i17" src="{{icons.message}}" mode="aspectFit" />
+      </view>
+      <view class="info-main">
+        <text class="tx-span info-label">建议与反馈</text>
+        <text class="tx-span info-value">通过小程序留言，告诉我们你的想法</text>
+      </view>
+      <image class="ico i14" src="{{icons.chevron}}" mode="aspectFit" />
+    </view>
+  </view>
+
+  <view style="padding:22.90rpx 34.35rpx 0">
+    <view class="btn btn-ghost btn-block" hover-class="hs" bindtap="onTipsTap">查看完整出游贴士</view>
+  </view>
+
+  <!-- 数据分析预告 -->
+  <view class="data-card" hover-class="hs" bindtap="onDataTap">
+    <view class="dc-badge">
+      <image class="ico i12" src="{{icons.chart}}" mode="aspectFit" />
+      <text class="tx-span">即将上线</text>
+    </view>
+    <text class="tx-span dc-title">文旅数据分析板块</text>
+    <text class="tx-span dc-desc">游客访问统计、景点热度排行、路线浏览量等数据看板正在筹备，先看看版式预览。</text>
+    <view class="dc-cta">
+      <text class="tx-span">抢先看看预告</text>
+      <image class="ico i12" src="{{icons.chevron}}" mode="aspectFit" />
+    </view>
+  </view>
+
+  <view class="about-foot">
+    <view class="tx-p">大美铜仁文旅宣传平台 · V1.0.0</view>
+    <view class="tx-p">© 2026 大美铜仁 · 仅供文旅宣传展示</view>
+    <view class="tx-p">景点信息仅供参考，以景区官方发布为准。</view>
+    <view class="tx-p credit-note">页面图片为版式示意素材（Pexels / Pixabay），正式上线前请替换为景区授权图片。</view>
+  </view>
+
+  <!-- 悬浮 AI 管家 咪噜 -->
+  <milu-float />
+
+</view>

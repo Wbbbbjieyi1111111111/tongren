@@ -1,0 +1,127 @@
+/* 数据分析页独有样式 */
+
+/* 自定义导航吸顶 */
+.subnav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+/* KPI 单位小字 */
+.kpi-unit {
+  font-size: 22rpx;
+  opacity: 0.7;
+  margin-left: 2rpx;
+}
+
+/* 刷新按钮文字 */
+.refresh-txt {
+  font-size: 20rpx;
+  color: #3A5B42;
+  letter-spacing: 1rpx;
+}
+
+/* 图表卡：独立布局，去掉全局固定高度，避免相互重叠 */
+.chart-card {
+  margin: 0 34.35rpx 28.63rpx;
+  padding: 28.63rpx 28.63rpx 22.90rpx;
+  background: #FFFFFF;
+  border: 0;
+  border-radius: 30.53rpx;
+  box-shadow: 0 11.45rpx 34.35rpx rgba(43, 70, 49, 0.08);
+  overflow: hidden;
+}
+
+.chart-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 17.18rpx;
+}
+
+/* 关键：图表容器高度自适应，宽度撑满，不再固定 244rpx */
+.chart-box {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-height: 240rpx;
+  margin-top: 17.18rpx;
+  padding: 0;
+  border: 0;
+  border-radius: 17.18rpx;
+  background: #F7F7F0;
+  overflow: hidden;
+}
+
+.chart-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 17.18rpx;
+  opacity: 0;
+  transform: translateY(16rpx) scale(0.98);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.chart-img.is-ready {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.chart-tip {
+  margin-top: 12rpx;
+  font-size: 19rpx;
+  color: #98988E;
+  text-align: right;
+}
+
+/* 骨架屏 */
+.chart-skeleton {
+  padding: 20rpx;
+}
+
+.sk-row {
+  height: 26rpx;
+  margin-bottom: 18rpx;
+  border-radius: 13rpx;
+  background: linear-gradient(90deg, #EAEFE5 25%, #F3F6EF 37%, #EAEFE5 63%);
+  background-size: 400% 100%;
+  animation: skShimmer 1.2s ease-in infinite;
+}
+
+.sk-row:nth-child(2) { width: 86%; }
+.sk-row:nth-child(3) { width: 72%; }
+.sk-row:nth-child(4) { width: 92%; }
+.sk-row:nth-child(5) { width: 64%; }
+.sk-row:nth-child(6) { width: 80%; }
+
+@keyframes skShimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+/* 卡片依次入场：淡入 + 上浮 */
+.chart-in {
+  opacity: 0;
+  animation: chartIn 0.65s cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+}
+
+@keyframes chartIn {
+  0%   { opacity: 0; transform: translateY(36rpx); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* 刷新图标旋转 */
+.is-spin {
+  animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.data-foot {
+  padding: 8rpx 34.35rpx 0;
+  text-align: center;
+}

@@ -1,0 +1,102 @@
+<view class="sub-page">
+
+  <!-- 自定义导航 -->
+  <view class="subnav" style="padding-top:{{statusBar}}px">
+    <view class="icon-btn" hover-class="hs" bindtap="onBack">
+      <image class="ico i21" src="{{icons.back}}" mode="aspectFit" />
+    </view>
+    <text class="tx-h2">路线详情</text>
+    <view class="icon-btn {{isFav ? 'is-fav' : ''}}" hover-class="hs" bindtap="onFavTap">
+      <image class="ico i19" src="{{isFav ? icons.heartOn : icons.heart}}" mode="aspectFit" />
+    </view>
+  </view>
+
+  <!-- 路线封面 -->
+  <view class="route-hero">
+    <image src="{{route.coverUrl}}" mode="aspectFill" />
+    <view class="rh-scrim"></view>
+    <view class="route-days">{{route.days}} 日</view>
+    <view class="rh-copy">
+      <text class="tx-span rh-eyebrow">CURATED JOURNEY</text>
+      <text class="tx-h1">{{route.name}}</text>
+      <text class="tx-span rh-meta">适合{{route.suitable}}</text>
+    </view>
+  </view>
+
+  <!-- 数据统计 -->
+  <view class="stats">
+    <view class="stat" wx:for="{{stats}}" wx:key="label">
+      <text class="tx-b">{{item.value}}</text>
+      <text class="tx-span">{{item.label}}</text>
+    </view>
+  </view>
+
+  <!-- 每日行程 -->
+  <view wx:for="{{route.plan}}" wx:key="day">
+    <view class="day-block">
+      <view class="day-head">
+        <view class="day-badge">{{item.day}}</view>
+        <text class="tx-h4">{{item.title}}</text>
+      </view>
+      <view class="timeline">
+        <view class="tl-item" wx:for="{{item.items}}" wx:for-item="it" wx:for-index="ii" wx:key="name">
+          <view class="tl-dot"></view>
+          <text class="tx-span tl-time">{{it.time}}</text>
+          <text class="tx-span tl-name">{{it.name}}</text>
+          <text class="tx-span tl-desc">{{it.desc}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 沿途打卡 -->
+  <view class="sec-title-sm" style="margin-left:34.35rpx">
+    <view class="sec-bar"></view>
+    <text class="tx-span">沿途打卡</text>
+  </view>
+  <scroll-view class="spot-rail" scroll-x="true" show-scrollbar="false">
+    <view class="spot-track">
+      <view class="rail-card" wx:for="{{spots}}" wx:key="id" hover-class="hs" bindtap="onSpotTap" data-id="{{item.id}}">
+        <image src="{{item.imgUrl}}" mode="aspectFill" />
+        <text class="tx-b">{{item.name}}</text>
+        <text class="tx-span">{{item.district}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 住宿推荐 -->
+  <view class="sec-title-sm" style="margin-left:34.35rpx">
+    <view class="sec-bar"></view>
+    <text class="tx-span">住进山水里</text>
+  </view>
+  <view class="stay-card" wx:for="{{route.stays}}" wx:key="name">
+    <view class="stay-ico">
+      <image class="ico i17" src="{{icons.home}}" mode="aspectFit" />
+    </view>
+    <view class="stay-main">
+      <text class="tx-b">{{item.name}}</text>
+      <text class="tx-span">{{item.type}} · {{item.desc}}</text>
+    </view>
+    <text class="tx-span stay-price">{{item.price}}</text>
+  </view>
+
+  <!-- 避坑提醒 -->
+  <view class="warn-card">
+    <view class="tx-h4 warn-title">
+      <image class="ico i14" src="{{icons.info}}" mode="aspectFit" />
+      <text class="tx-span">避坑提醒</text>
+    </view>
+    <view class="tx-ul">
+      <view class="tx-li" wx:for="{{route.avoid}}" wx:key="*this">{{item}}</view>
+    </view>
+  </view>
+
+  <view class="subbar-space"></view>
+
+  <!-- 底部操作栏 -->
+  <view class="actionbar">
+    <view class="btn btn-outline" hover-class="hs" bindtap="onAddCustom">加入自定义</view>
+    <view class="btn btn-primary" hover-class="hs" bindtap="onFavTap">收藏路线</view>
+  </view>
+
+</view>

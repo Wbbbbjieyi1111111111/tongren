@@ -1,0 +1,25 @@
+/* 关于我们页独有样式 */
+
+/* 品牌块底纹铺满 */
+.about-brand .ab-topo {
+  display: block;
+}
+
+/* 信息行右侧箭头 */
+.about-list .info-row > .ico {
+  flex: none;
+  margin-left: 11.45rpx;
+}
+
+/* 三族卡片宽度 */
+.rail-item .ethnic-card {
+  display: block;
+}
+
+/* 预告卡内图标间距 */
+.dc-badge .ico {
+  margin-right: 7.63rpx;
+}
+.dc-cta .ico {
+  margin-left: 5.73rpx;
+}

@@ -1,0 +1,86 @@
+<view class="sub-page">
+
+  <!-- 自定义导航 -->
+  <view class="subnav" style="padding-top:{{statusBar}}px">
+    <view class="icon-btn" hover-class="hs" bindtap="onBack">
+      <image class="ico i21" src="{{icons.back}}" mode="aspectFit" />
+    </view>
+    <text class="tx-h2">铜仁味道 · 民俗</text>
+    <view class="spacer-44"></view>
+  </view>
+
+  <!-- 页面标题 -->
+  <view class="page-head">
+    <view class="tx-p eyebrow">TASTE &amp; TRADITION</view>
+    <view class="tx-h1 page-title">山的味道，人的节庆</view>
+    <view class="tx-p page-sub">酸、辣、糯、香，还有唱不完的歌。</view>
+  </view>
+
+  <!-- 分类切换 -->
+  <view class="segmented">
+    <view class="seg {{activeTab === 'food' ? 'is-on' : ''}}" hover-class="hs" bindtap="onTabTap" data-tab="food">美食</view>
+    <view class="seg {{activeTab === 'folk' ? 'is-on' : ''}}" hover-class="hs" bindtap="onTabTap" data-tab="folk">非遗民俗</view>
+    <view class="seg {{activeTab === 'fest' ? 'is-on' : ''}}" hover-class="hs" bindtap="onTabTap" data-tab="fest">节庆活动</view>
+  </view>
+
+  <!-- 美食 -->
+  <view class="panel" wx:if="{{activeTab === 'food'}}">
+    <view class="tx-p panel-intro">铜仁人把山里的酸与糯做成日常。除了下面这些，石阡苔茶也值得带一包回家。</view>
+    <view class="food-list">
+      <view class="food-card" wx:for="{{foods}}" wx:key="name">
+        <image class="food-thumb" src="{{item.imgUrl}}" mode="aspectFill" />
+        <view class="food-body">
+          <view class="food-top">
+            <text class="tx-h4">{{item.name}}</text>
+            <view class="tag tag-soft">{{item.tag}}</view>
+          </view>
+          <view class="tx-p">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 非遗民俗 -->
+  <view class="panel" wx:elif="{{activeTab === 'folk'}}">
+    <view class="tx-p panel-intro">鼓点一响，银饰一亮，武陵山里的故事就开场了。</view>
+    <view class="folk-list">
+      <view class="folk-row" wx:for="{{folk}}" wx:key="name">
+        <view class="folk-num">{{item.num}}</view>
+        <view class="folk-main">
+          <view class="folk-top">
+            <text class="tx-h4">{{item.name}}</text>
+            <view class="tag {{item.levelClass}}">{{item.level}}</view>
+          </view>
+          <view class="tx-p">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 节庆活动 -->
+  <view class="panel" wx:else>
+    <view class="tx-p panel-intro">按农历赴一场约会，把行程排进节庆里。</view>
+    <view class="fest-list">
+      <view class="fest-item" wx:for="{{fests}}" wx:key="name">
+        <view class="fest-date">
+          <text class="tx-span">{{item.month}}</text>
+          <text class="tx-b">{{item.day}}</text>
+        </view>
+        <view class="fest-main">
+          <text class="tx-h4">{{item.name}}</text>
+          <view class="tx-p fest-place">
+            <image class="ico i10" src="{{icons.pin}}" mode="aspectFit" />
+            <text class="tx-span">{{item.place}}</text>
+          </view>
+          <view class="tx-p">{{item.desc}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部口号 -->
+  <view class="slogan">
+    <view class="tx-p slogan-title" style="font-size:32.44rpx;letter-spacing:.14em">一方水土，一方风味</view>
+  </view>
+
+</view>

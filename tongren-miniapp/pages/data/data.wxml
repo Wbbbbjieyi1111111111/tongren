@@ -1,0 +1,71 @@
+<view class="sub-page">
+
+  <!-- 自定义导航 -->
+  <view class="subnav" style="padding-top:{{statusBar}}px">
+    <view class="icon-btn" hover-class="hs" bindtap="onBack">
+      <image class="ico i21" src="{{icons.back}}" mode="aspectFit" />
+    </view>
+    <text class="tx-h2">文旅数据看板</text>
+    <view class="icon-btn" hover-class="hs" bindtap="onRefresh">
+      <text class="refresh-txt {{refreshing ? 'is-spin' : ''}}">刷新</text>
+    </view>
+  </view>
+
+  <!-- 数据看板头部 -->
+  <view class="dev-banner">
+    <image class="db-topo" src="{{decoUrl}}" mode="aspectFill" />
+    <view class="db-badge">LIVE · 实时数据</view>
+    <view class="tx-h2">
+      <text class="tx-span" style="display:block">文旅数据分析看板</text>
+      <text class="tx-span" style="display:block">基于真实游客行为数据</text>
+    </view>
+    <view class="tx-p">数据由后端 pandas + matplotlib 实时生成，涵盖景点热度、访问趋势与游客偏好。</view>
+    <view class="db-icon">
+      <image class="ico i20" src="{{icons.chart}}" mode="aspectFit" />
+    </view>
+  </view>
+
+  <!-- KPI -->
+  <view class="kpis">
+    <view class="kpi" wx:for="{{kpis}}" wx:key="label">
+      <text class="tx-span">{{item.label}}</text>
+      <text class="tx-b">{{item.value}}<text class="kpi-unit">{{item.unit}}</text></text>
+      <text class="tx-em">环比实时统计</text>
+    </view>
+  </view>
+
+  <!-- 图表：进入页面后错峰依次动画呈现 -->
+  <view
+    class="chart-card chart-in"
+    wx:for="{{charts}}"
+    wx:key="key"
+    style="animation-delay:{{index * 140}}ms"
+  >
+    <view class="chart-head">
+      <text class="tx-h4">{{item.title}}</text>
+      <text class="tx-span">{{item.sub}}</text>
+    </view>
+    <view class="chart-box">
+      <view class="chart-skeleton" wx:if="{{!item.loaded}}">
+        <view class="sk-row" wx:for="{{[1,2,3,4,5,6]}}" wx:key="*this"></view>
+      </view>
+      <image
+        class="chart-img {{item.loaded ? 'is-ready' : ''}}"
+        src="{{item.url}}"
+        mode="widthFix"
+        data-index="{{index}}"
+        data-url="{{item.url}}"
+        bindload="onChartLoad"
+        bindtap="onChartTap"
+      />
+    </view>
+    <view class="chart-tip">点击图表可放大查看</view>
+  </view>
+
+  <view class="data-foot">
+    <text class="tx-span">数据更新时间：{{updatedAt}}</text>
+  </view>
+
+  <view class="subbar-space"></view>
+
+</view>

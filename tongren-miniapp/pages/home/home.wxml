@@ -1,0 +1,208 @@
+<view class="tab-page">
+
+  <!-- 入场动画：抹茶色小叶子从顶部飘落 -->
+  <view class="splash" wx:if="{{showSplash}}">
+    <view class="splash-leaf leaf-1"></view>
+    <view class="splash-leaf leaf-2"></view>
+    <view class="splash-leaf leaf-3"></view>
+    <view class="splash-leaf leaf-4"></view>
+    <view class="splash-leaf leaf-5"></view>
+    <view class="splash-leaf leaf-6"></view>
+    <view class="splash-brand">
+      <text class="splash-title">大美铜仁</text>
+      <text class="splash-sub">GUIZHOU · TONGREN</text>
+    </view>
+  </view>
+
+  <!-- 顶部品牌栏 -->
+  <view class="home-head" style="padding-top:{{statusBar}}px">
+    <view class="brand-seal">
+      <image class="ico i24" src="{{icons.brand}}" mode="aspectFit" />
+    </view>
+    <view class="brand-text">
+      <text class="tx-span brand-name">大美铜仁</text>
+      <text class="tx-span brand-sub">GUIZHOU · TONGREN</text>
+    </view>
+    <view class="weather-chip" hover-class="hs" bindtap="onTipsTap">
+      <image class="ico i15" src="{{icons.sun}}" mode="aspectFit" />
+      <text class="tx-b">{{weather.temp}}</text>
+      <text class="tx-span">{{weather.desc}}</text>
+    </view>
+    <view class="user-chip {{user ? 'is-on' : ''}}" hover-class="hs" bindtap="onLoginTap">
+      <image class="ico i15" src="{{icons.user}}" mode="aspectFit" />
+      <text class="tx-b">{{user ? user.nickname : '登录'}}</text>
+    </view>
+  </view>
+
+  <!-- 主视觉轮播 -->
+  <view class="hero">
+    <swiper class="hero-swiper" autoplay="{{heroAutoplay}}" circular interval="5000" current="{{heroIndex}}" bindchange="onHeroChange">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <!-- 视频页：与轮播图同尺寸，无缝铺满 -->
+        <view wx:if="{{item.kind === 'video'}}" class="hero-slide hero-video">
+          <video
+            wx:if="{{heroIndex === index}}"
+            class="hero-video-el"
+            src="{{item.src}}"
+            poster="{{item.poster}}"
+            object-fit="cover"
+            autoplay
+            loop
+            muted
+            controls
+            show-center-play-btn
+            enable-progress-gesture="{{false}}"
+            bindplay="onVideoPlay"
+            bindpause="onVideoPause"
+          ></video>
+          <cover-view class="hero-video-tag">Tongren · 宣传片</cover-view>
+          <cover-view class="hero-video-copy">
+            <cover-view class="hvc-eyebrow">{{item.eyebrow}}</cover-view>
+            <cover-view class="hvc-title">{{item.title}}</cover-view>
+            <cover-view class="hvc-meta">{{item.meta}}</cover-view>
+          </cover-view>
+        </view>
+        <view wx:else class="hero-slide" hover-class="hs" bindtap="onBannerTap" data-id="{{item.id}}">
+          <!-- 图片页 -->
+          <image src="{{item.imgUrl}}" mode="aspectFill" />
+          <view class="hero-scrim"></view>
+          <view class="hero-copy">
+            <text class="tx-span hero-eyebrow">{{item.eyebrow}}</text>
+            <text class="tx-span hero-title">{{item.title}}</text>
+            <text class="tx-span hero-meta">{{item.meta}}</text>
+          </view>
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class="hero-dots">
+      <view wx:for="{{banners}}" wx:key="id" class="hero-dot {{index === heroIndex ? 'is-on' : ''}}" hover-class="hs" bindtap="onDotTap" data-index="{{index}}">
+        <text class="tx-span"></text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索入口 -->
+  <view class="searchbar" hover-class="hs" bindtap="onSearchTap">
+    <image class="ico i17" src="{{icons.search}}" mode="aspectFit" />
+    <text class="tx-span search-hint">搜索梵净山、温泉、苗王城…</text>
+    <text class="tx-span mini">搜索</text>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="quick">
+    <view class="quick-btn" wx:for="{{quick}}" wx:key="key" hover-class="hs" bindtap="onQuickTap" data-type="{{item.key}}">
+      <view class="quick-ico">
+        <image class="ico i21" src="{{item.iconUrl}}" mode="aspectFit" />
+      </view>
+      <text class="tx-span">{{item.label}}</text>
+      <text class="tx-span quick-badge" wx:if="{{item.badge}}">{{item.badge}}</text>
+    </view>
+  </view>
+
+  <!-- 热门精选 -->
+  <view class="sec-head">
+    <view>
+      <text class="tx-h2 sec-title">热门精选</text>
+      <view class="tx-p sec-sub">第一次来铜仁，先去这几处</view>
+    </view>
+    <view class="sec-link" hover-class="hs" bindtap="onSpotsTab">
+      <text class="tx-span">查看全部</text>
+      <image class="ico i13" src="{{icons.chevron}}" mode="aspectFit" />
+    </view>
+  </view>
+  <scroll-view class="rail" scroll-x="true">
+    <view class="rail-track">
+      <view class="rail-item" wx:for="{{rail}}" wx:key="id" hover-class="hs" bindtap="onSpotTap" data-id="{{item.id}}">
+        <view class="spot-mini">
+          <view class="mini-media">
+            <image src="{{item.imgUrl}}" mode="aspectFill" />
+            <view class="badge-lv {{item.levelClass}}">{{item.level}}</view>
+          </view>
+          <view class="mini-body">
+            <text class="tx-span s-name">{{item.name}}</text>
+            <view class="s-line">
+              <image class="ico i11" src="{{icons.pin}}" mode="aspectFit" />
+              <text class="tx-span">{{item.district}} · </text>
+              <image class="ico i11" src="{{icons.star}}" mode="aspectFit" />
+              <text class="tx-span">{{item.score}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 铜仁味道 & 民俗 -->
+  <view class="sec-head">
+    <view>
+      <text class="tx-h2 sec-title">铜仁味道 &amp; 民俗</text>
+      <view class="tx-p sec-sub">一方水土，一方风味</view>
+    </view>
+    <view class="sec-link" hover-class="hs" bindtap="onFoodTap">
+      <text class="tx-span">去看看</text>
+      <image class="ico i13" src="{{icons.chevron}}" mode="aspectFit" />
+    </view>
+  </view>
+  <view class="mosaic">
+    <view class="mosaic-feature" hover-class="hs" bindtap="onFoodTap">
+      <image src="{{food.imgUrl}}" mode="aspectFill" />
+      <view class="m-scrim"></view>
+      <view class="m-copy">
+        <text class="tx-span m-kicker">{{food.kicker}}</text>
+        <text class="tx-span m-name">{{food.name}}</text>
+        <text class="tx-span m-desc">{{food.desc}}</text>
+      </view>
+    </view>
+    <view class="mosaic-side">
+      <view class="mosaic-mini moss" hover-class="hs" bindtap="onFoodTap">
+        <view class="mm-top">
+          <view class="mm-icon">
+            <image class="ico i14" src="{{icons.spark}}" mode="aspectFit" />
+          </view>
+          <text class="tx-span mm-index">01</text>
+        </view>
+        <view>
+          <text class="tx-span mm-name">土家摆手舞</text>
+          <text class="tx-span mm-meta">国家级非遗 · 鼓点为节</text>
+        </view>
+      </view>
+      <view class="mosaic-mini sand" hover-class="hs" bindtap="onFoodTap">
+        <view class="mm-top">
+          <view class="mm-icon">
+            <image class="ico i14" src="{{icons.seal}}" mode="aspectFit" />
+          </view>
+          <text class="tx-span mm-index">02</text>
+        </view>
+        <view>
+          <text class="tx-span mm-name">苗族银饰</text>
+          <text class="tx-span mm-meta">松桃苗乡 · 银光成诗</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 出游公告 -->
+  <view class="notice">
+    <view class="notice-head">
+      <image class="ico i16" src="{{icons.speaker}}" mode="aspectFit" />
+      <text class="tx-span">{{notice.badge}}</text>
+    </view>
+    <view class="notice-row" wx:for="{{notice.list}}" wx:key="id" hover-class="hs" bindtap="onNoticeTap">
+      <view class="notice-dot"></view>
+      <text class="tx-span">{{item.text}}</text>
+    </view>
+  </view>
+
+  <!-- 底部品牌口号 -->
+  <view class="slogan">
+    <view class="slogan-seal">
+      <image class="slogan-seal-img" src="{{sealImgUrl}}" mode="aspectFit" />
+    </view>
+    <view class="tx-p slogan-title">大美铜仁，山水相逢</view>
+    <view class="tx-p slogan-sub">铜仁文旅宣传平台 · 让世界看见梵净山</view>
+  </view>
+
+  <!-- 悬浮 AI 管家 咪噜 -->
+  <milu-float />
+
+</view>

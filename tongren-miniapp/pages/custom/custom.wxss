@@ -1,0 +1,84 @@
+/* 自定义路线页独有样式 */
+
+/* 自定义导航吸顶 */
+.subnav {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+}
+
+/* 「重置」文字按钮居中 */
+.text-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 底部生成按钮固定 */
+.actionbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  padding-bottom: calc(22.90rpx + env(safe-area-inset-bottom));
+}
+.subbar-space {
+  padding-bottom: 200rpx;
+}
+
+/* 地图卡：真实地图组件铺满 */
+.map-card {
+  position: relative;
+  margin: 0 26.72rpx;
+  border-radius: 24rpx;
+  overflow: hidden;
+  background: #EAEFE5;
+}
+.tongren-map {
+  width: 100%;
+  height: 380rpx;
+  display: block;
+}
+.map-overlay-tip {
+  position: absolute;
+  left: 20rpx;
+  top: 20rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 10rpx 20rpx;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+/* 勾选/顺序列表项内的图标间距已在全局补偿，这里只做禁用态 */
+.mini-btn.is-off {
+  opacity: .3;
+}
+
+/* 空状态内的两行文案 */
+.empty-card .tx-span {
+  display: block;
+}
+
+/* 列表行内容纵排 */
+.select-main {
+  display: flex;
+  flex-direction: column;
+}
+.order-main {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 单个按钮占满时去掉右侧间距 */
+.actionbar .btn:last-child {
+  margin-right: 0;
+}
+
+/* 生成结果卡内输入项 */
+.result-card .tx-input {
+  margin-top: 9.54rpx;
+}

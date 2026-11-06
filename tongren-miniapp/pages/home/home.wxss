@@ -1,0 +1,166 @@
+/* 首页独有样式（绝大多数类名已在 app.wxss 中定义，此处只做必要补充） */
+
+/* ==================== 入场动画：抹茶色叶子飘落 ==================== */
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: linear-gradient(160deg, #F0F5EA 0%, #E3E9DD 55%, #D4DFC9 100%);
+  overflow: hidden;
+}
+
+.splash-brand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  animation: brandIn 1.2s ease-out both;
+}
+
+.splash-title {
+  display: block;
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #3A5B42;
+  letter-spacing: 12rpx;
+}
+
+.splash-sub {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #6B8A63;
+  letter-spacing: 6rpx;
+}
+
+@keyframes brandIn {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.85); }
+  60%  { opacity: 1; transform: translate(-50%, -50%) scale(1.04); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* 六片叶子从顶部飘落，不同延时、轨迹、大小 */
+.splash-leaf {
+  position: absolute;
+  top: -60rpx;
+  width: 40rpx;
+  height: 40rpx;
+  background: radial-gradient(circle at 30% 30%, #A9C9A0 0%, #6B966F 70%, #4A7A52 100%);
+  border-radius: 0 80% 0 80%;
+  transform-origin: center center;
+  box-shadow: 0 2rpx 8rpx rgba(58, 91, 66, 0.25);
+}
+
+.leaf-1 { left: 12%;  animation: leafFall 1.7s ease-in forwards; }
+.leaf-2 { left: 30%;  animation: leafFall 1.9s ease-in 0.15s forwards; }
+.leaf-3 { left: 50%;  animation: leafFall 1.6s ease-in 0.05s forwards; }
+.leaf-4 { left: 68%;  animation: leafFall 2.0s ease-in 0.25s forwards; }
+.leaf-5 { left: 85%;  animation: leafFall 1.75s ease-in 0.1s forwards; }
+.leaf-6 { left: 40%;  animation: leafFall 2.1s ease-in 0.35s forwards; }
+
+@keyframes leafFall {
+  0% {
+    transform: translateY(-60rpx) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  50% {
+    transform: translateY(45vh) rotate(180deg) translateX(30rpx);
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) translateX(-20rpx);
+    opacity: 0.7;
+  }
+}
+
+/* ================================================================ */
+
+/* 轮播：切换交给 swiper，slide 需常显并可点击（原型用 opacity 手动切换） */
+.hero swiper-item {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hero .hero-slide {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 轮播视频页：与图片页完全同尺寸，无边框无间隙 */
+.hero-video {
+  background: #1D2A21;
+}
+.hero-video-el {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+}
+.hero-video-tag {
+  position: absolute;
+  top: 22rpx;
+  left: 24rpx;
+  z-index: 3;
+  padding: 6rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(26, 38, 28, 0.55);
+  color: #F3F7EF;
+  font-size: 19rpx;
+  letter-spacing: 1rpx;
+}
+.hero-video-copy {
+  position: absolute;
+  left: 34rpx;
+  right: 34rpx;
+  bottom: 46rpx;
+  z-index: 3;
+  color: #FFFFFF;
+}
+.hvc-eyebrow {
+  font-size: 19rpx;
+  opacity: 0.86;
+  margin-bottom: 8rpx;
+}
+.hvc-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  line-height: 1.35;
+  text-shadow: 0 3rpx 14rpx rgba(0, 0, 0, 0.55);
+}
+.hvc-meta {
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  opacity: 0.88;
+}
+
+/* 美食拼图大卡封面铺满 */
+.mosaic-feature image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* 公告条右侧日期 */
+.notice-head .notice-date {
+  margin-left: auto;
+  font-size: 19.08rpx;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--brown);
+}
+
+/* 底部口号印章图 */
+.slogan-seal-img {
+  width: 32.44rpx;
+  height: 32.44rpx;
+}

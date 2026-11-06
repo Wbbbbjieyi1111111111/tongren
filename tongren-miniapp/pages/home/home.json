@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "milu-float": "/components/milu-float/milu-float"
+  }
+}

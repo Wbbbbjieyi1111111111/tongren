@@ -1,0 +1,119 @@
+<view class="sub-page">
+
+  <!-- 自定义导航 -->
+  <view class="subnav" style="padding-top:{{statusBar}}px">
+    <view class="icon-btn" hover-class="hs" bindtap="onBack">
+      <image class="ico i21" src="{{icons.back}}" mode="aspectFit" />
+    </view>
+    <text class="tx-h2">景点详情</text>
+    <view class="spacer-44"></view>
+  </view>
+
+  <!-- 图集 -->
+  <view class="hero-detail">
+    <swiper class="hero-detail-swiper" circular="true" current="{{slide}}" bindchange="onSlideChange">
+      <swiper-item wx:for="{{images}}" wx:key="*this">
+        <view class="hero-slide">
+          <image src="{{item}}" mode="aspectFill" />
+        </view>
+      </swiper-item>
+    </swiper>
+    <view class="hd-scrim"></view>
+    <view class="badge-lv {{levelCls}}">{{levelText}}</view>
+    <view class="hd-counter">{{slide + 1}} / {{images.length}}</view>
+    <view class="hd-dots">
+      <view class="hd-dot {{index === slide ? 'is-on' : ''}}" wx:for="{{images}}" wx:key="*this" hover-class="hs" bindtap="onDotTap" data-index="{{index}}"></view>
+    </view>
+  </view>
+
+  <view class="pad-d">
+
+    <!-- 名称 + 收藏 -->
+    <view class="detail-title-row">
+      <text class="tx-h1">{{spot.name}}</text>
+      <view class="fav-btn {{isFav ? 'is-fav' : ''}}" hover-class="hs" bindtap="onFavTap">
+        <image class="ico i21" src="{{isFav ? icons.heartOn : icons.heart}}" mode="aspectFit" />
+      </view>
+    </view>
+
+    <!-- 标签 -->
+    <view class="meta-row">
+      <view class="tag tag-red" wx:if="{{!spot.level}}">红色景点</view>
+      <view class="tag tag-gold" wx:else>{{spot.level}} 级景区</view>
+      <view class="tag tag-green" wx:if="{{spot.level}}">{{spot.cat}}</view>
+      <view class="tag tag-soft">
+        <image class="ico i10" src="{{icons.pin}}" mode="aspectFit" />
+        <text class="tx-span">{{spot.district}}</text>
+      </view>
+      <view class="tag tag-soft">
+        <image class="ico i10" src="{{icons.star}}" mode="aspectFit" />
+        <text class="tx-span">{{spot.score}} 分</text>
+      </view>
+    </view>
+
+    <view class="tx-p detail-slogan">{{spot.slogan}}</view>
+
+    <!-- 关于这里 -->
+    <view class="sec-title-sm">
+      <view class="sec-bar"></view>
+      <text class="tx-span">关于这里</text>
+    </view>
+    <view class="intro">
+      <view class="tx-p" wx:for="{{spot.intro}}" wx:key="*this">{{item}}</view>
+    </view>
+
+    <!-- 实用信息 -->
+    <view class="sec-title-sm">
+      <view class="sec-bar"></view>
+      <text class="tx-span">实用信息</text>
+    </view>
+    <view class="info-grid">
+      <view class="info-cell" wx:for="{{infoCells}}" wx:key="key">
+        <view class="k">
+          <image class="ico i13" src="{{item.iconUrl}}" mode="aspectFit" />
+          <text class="tx-span">{{item.label}}</text>
+        </view>
+        <text class="tx-span v">{{item.value}}</text>
+      </view>
+    </view>
+
+    <!-- 游玩贴士 -->
+    <view class="sec-title-sm">
+      <view class="sec-bar"></view>
+      <text class="tx-span">游玩贴士</text>
+    </view>
+    <view class="tips-card">
+      <view class="tx-ul">
+        <view class="tx-li" wx:for="{{spot.tips}}" wx:key="*this">
+          <view class="tx-dot"></view>
+          <text class="tx-span">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 周边风味 -->
+    <view class="sec-title-sm">
+      <view class="sec-bar"></view>
+      <text class="tx-span">周边风味</text>
+    </view>
+    <scroll-view class="food-rail" scroll-x="true" show-scrollbar="false">
+      <view class="food-track">
+        <view class="food-mini" wx:for="{{foods}}" wx:key="name" hover-class="hs" bindtap="onFoodTap">
+          <image class="fm-img" src="{{item.imgUrl}}" mode="aspectFill" />
+          <text class="tx-span fm-name">{{item.name}}</text>
+          <text class="tx-span fm-tag">{{item.tag}}</text>
+        </view>
+      </view>
+    </scroll-view>
+
+  </view>
+
+  <view class="subbar-space"></view>
+
+  <!-- 底部操作栏 -->
+  <view class="actionbar">
+    <view class="btn btn-outline" hover-class="hs" bindtap="onConsultTap">咨询交通</view>
+    <view class="btn btn-primary" hover-class="hs" bindtap="onRouteTap">查看推荐路线</view>
+  </view>
+
+</view>

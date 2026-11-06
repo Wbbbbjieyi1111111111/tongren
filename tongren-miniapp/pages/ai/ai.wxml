@@ -1,0 +1,77 @@
+<view class="ai-page">
+
+  <!-- 导航 -->
+  <view class="ai-nav" style="padding-top:{{statusBar}}px">
+    <view class="icon-btn" hover-class="hs" bindtap="onBack">
+      <image class="ico i21" src="{{icons.back}}" mode="aspectFit" />
+    </view>
+    <view class="nav-title">
+      <text class="nav-t1">咪噜 · 铜仁 AI 管家</text>
+      <text class="nav-t2">{{providerLabel}}</text>
+    </view>
+    <view class="spacer-44"></view>
+  </view>
+
+  <!-- 对话区 -->
+  <scroll-view
+    class="chat-scroll"
+    scroll-y
+    scroll-into-view="{{scrollTarget}}"
+    scroll-with-animation
+    enhanced
+    show-scrollbar="{{false}}"
+  >
+    <view class="msg-list">
+      <view wx:for="{{messages}}" wx:key="id" id="{{item.id}}" class="msg-row {{item.role}}">
+        <image wx:if="{{item.role === 'assistant'}}" class="msg-avatar" src="/static/characters/milu.png" mode="aspectFit" />
+        <view class="msg-bubble {{item.pending ? 'is-pending' : ''}} {{item.error ? 'is-error' : ''}}">
+          <view wx:if="{{item.pending}}" class="typing">
+            <view class="dot"></view>
+            <view class="dot"></view>
+            <view class="dot"></view>
+          </view>
+          <text wx:else class="msg-text">{{item.content}}</text>
+          <view wx:if="{{item.provider}}" class="msg-provider">{{item.provider}}</view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 预设提示词 -->
+  <view wx:if="{{quickShow}}" class="preset-bar">
+    <view class="preset-title">咪噜猜你想问</view>
+    <view class="preset-list">
+      <view
+        wx:for="{{presets}}"
+        wx:key="text"
+        class="preset-chip"
+        hover-class="hs"
+        data-text="{{item.text}}"
+        bindtap="onPromptTap"
+      >
+        <text class="chip-text">{{item.text}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 输入栏 -->
+  <view class="input-bar">
+    <textarea
+      class="chat-input"
+      value="{{inputValue}}"
+      placeholder="问问咪噜，比如：梵净山哪条路好爬？"
+      placeholder-class="ph"
+      auto-height
+      maxlength="300"
+      cursor-spacing="20"
+      confirm-type="send"
+      disabled="{{sending}}"
+      bindinput="onInput"
+      bindconfirm="onSendTap"
+    ></textarea>
+    <view class="send-btn {{sending || !inputValue ? 'is-disabled' : ''}}" hover-class="hs" bindtap="onSendTap">
+      <text class="send-arrow">↑</text>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,108 @@
+<view class="sub-page">
+
+  <!-- 自定义导航 -->
+  <view class="subnav" style="padding-top:{{statusBar}}px">
+    <view class="icon-btn" hover-class="hs" bindtap="onBack">
+      <image class="ico i21" src="{{icons.back}}" mode="aspectFit" />
+    </view>
+    <text class="tx-h2">出游贴士</text>
+    <view class="spacer-44"></view>
+  </view>
+
+  <!-- 页面标题 -->
+  <view class="page-head">
+    <view class="tx-p eyebrow">TRAVEL NOTES</view>
+    <view class="tx-h1 page-title">出发前，读一读</view>
+    <view class="tx-p page-sub">天气、穿搭、交通与预约，一次讲清楚。</view>
+  </view>
+
+  <view class="pad-d">
+
+    <!-- 四季气候 -->
+    <view class="sec-title-sm" style="margin-top:30.53rpx">
+      <view class="sec-bar"></view>
+      <text class="tx-span">四季气候速览</text>
+    </view>
+    <view class="season-grid">
+      <view class="season-card" wx:for="{{seasons}}" wx:key="name">
+        <view class="season-top">
+          <text class="tx-b">{{item.name}}</text>
+          <text class="tx-span">{{item.months}}</text>
+        </view>
+        <text class="tx-span season-temp">{{item.temp}}</text>
+        <text class="tx-span season-note">{{item.note}}</text>
+      </view>
+    </view>
+    <view class="inline-btn" hover-class="hs" bindtap="onWeatherTap">
+      <image class="ico i14" src="{{icons.sun}}" mode="aspectFit" />
+      <text class="tx-span">查看铜仁实时天气</text>
+    </view>
+
+    <!-- 穿搭建议 -->
+    <view class="sec-title-sm">
+      <view class="sec-bar"></view>
+      <text class="tx-span">穿搭建议</text>
+    </view>
+    <view class="dress-chips">
+      <view class="dress-chip" wx:for="{{dress}}" wx:key="*this">
+        <image class="ico i13" src="{{icons.check}}" mode="aspectFit" />
+        <text class="tx-span">{{item}}</text>
+      </view>
+    </view>
+
+    <!-- 怎么到铜仁 -->
+    <view class="sec-title-sm">
+      <view class="sec-bar"></view>
+      <text class="tx-span">怎么到铜仁</text>
+    </view>
+    <view class="transport">
+      <view class="transport-row" wx:for="{{transport}}" wx:key="label">
+        <view class="transport-ico">
+          <image class="ico i16" src="{{item.iconUrl}}" mode="aspectFit" />
+        </view>
+        <view class="transport-main">
+          <text class="tx-b">{{item.label}}</text>
+          <text class="tx-span">{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 景区预约三步走 -->
+    <view class="sec-title-sm">
+      <view class="sec-bar"></view>
+      <text class="tx-span">景区预约三步走</text>
+    </view>
+    <view class="steps">
+      <view class="process-step" wx:for="{{reserve}}" wx:key="num">
+        <view class="ps-num">{{item.num}}</view>
+        <view class="ps-line"></view>
+        <view class="ps-main">
+          <text class="tx-b">{{item.label}}</text>
+          <text class="tx-span">{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 当地注意事项 -->
+    <view class="sec-title-sm">
+      <view class="sec-bar"></view>
+      <text class="tx-span">当地注意事项</text>
+    </view>
+    <view class="bullet-card">
+      <view class="tx-ul">
+        <view class="tx-li" wx:for="{{notes}}" wx:key="*this">
+          <view class="tx-dot"></view>
+          <text class="tx-span">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view style="padding:40.56rpx 0 0">
+      <view class="btn btn-outline btn-block" hover-class="hs" bindtap="onHomeTap">返回首页</view>
+    </view>
+
+  </view>
+
+  <view class="subbar-space"></view>
+
+</view>

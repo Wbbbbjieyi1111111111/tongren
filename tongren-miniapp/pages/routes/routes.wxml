@@ -1,0 +1,58 @@
+<view class="tab-page">
+
+  <!-- 页面标题 -->
+  <view class="page-head" style="padding-top:{{statusBar}}px">
+    <view class="tx-p eyebrow">JOURNEY PLANNER</view>
+    <view class="tx-h1 page-title">游玩路线规划</view>
+    <view class="tx-p page-sub">为你的铜仁之行，选一条刚刚好的路。</view>
+  </view>
+
+  <!-- 定制入口 -->
+  <view class="custom-hero" hover-class="hs" bindtap="onCustomTap">
+    <image class="ch-topo" src="{{decoUrl}}" mode="aspectFill" />
+    <text class="tx-span ch-eyebrow">CUSTOM ROUTE</text>
+    <text class="tx-span ch-title">定制我的专属路线</text>
+    <text class="tx-span ch-desc">勾选心动的景点，排好顺序，生成属于你的铜仁行程。</text>
+    <view class="ch-cta">
+      <text class="tx-span">开始定制</text>
+      <image class="ico i12" src="{{icons.cta}}" mode="aspectFit" />
+    </view>
+  </view>
+
+  <!-- 路线列表 -->
+  <view class="route-list">
+    <view class="route-card" wx:for="{{routes}}" wx:key="id">
+      <view class="route-cover">
+        <image src="{{item.coverUrl}}" mode="aspectFill" />
+        <view class="cover-scrim"></view>
+        <view class="route-days">{{item.days}} 日</view>
+      </view>
+      <view class="route-body">
+        <text class="tx-h3">{{item.name}}</text>
+        <view class="route-suit">
+          <image class="ico i12" src="{{icons.users}}" mode="aspectFit" />
+          <text class="tx-span">适合：{{item.suitable}}</text>
+        </view>
+        <view class="tx-p route-overview">{{item.overview}}</view>
+        <view class="route-meta">
+          <view class="tx-span">
+            <image class="ico i11" src="{{icons.utensils}}" mode="aspectFit" />
+            <text class="tx-span">推荐美食：{{item.foods}}</text>
+          </view>
+          <view class="tx-span">
+            <image class="ico i11" src="{{icons.info}}" mode="aspectFit" />
+            <text class="tx-span">出行提示：{{item.tip}}</text>
+          </view>
+        </view>
+        <view class="route-actions">
+          <view class="btn btn-ghost" hover-class="hs" bindtap="onAddCustom" data-id="{{item.id}}">加入自定义</view>
+          <view class="btn btn-primary" hover-class="hs" bindtap="onDetail" data-id="{{item.id}}">查看详情</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 悬浮 AI 管家 咪噜 -->
+  <milu-float />
+
+</view>
